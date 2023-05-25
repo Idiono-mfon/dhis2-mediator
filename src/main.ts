@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { OpenHimSetup } from './openhim.setup';
+import { AppModule } from './app.module.js';
+import { OpenHimSetup } from './openhim.setup.js';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {

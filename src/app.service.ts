@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AppUtil } from './app.util';
+import { AppUtil } from './app.util.js';
 import axios from 'axios';
-import { Dhis2 } from './config/configuration';
+import { Dhis2 } from './config/configuration.js';
 
 @Injectable()
 export class AppService {

@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AppService, Dhis2ToFhirDataOptions } from './app.service';
+import { AppService, Dhis2ToFhirDataOptions } from './app.service.js';
 
 @Controller('/dhis2-to-fhir')
 export class AppController {

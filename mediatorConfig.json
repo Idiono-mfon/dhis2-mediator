@@ -10,7 +10,7 @@
       "routes": [
         {
           "name": "DHIS2 to FHIR Endpoint",
-          "host": "https://7810-102-89-23-240.ngrok-free.app",
+          "host": "localhost",
           "port": "9078",
           "primary": true,
           "type": "http"
@@ -24,7 +24,7 @@
   "endpoints": [
     {
       "name": "DHIS2 to FHIR Endpoint",
-      "host": "https://7810-102-89-23-240.ngrok-free.app",
+      "host": "localhost",
       "path": "/dhis2-to-fhir",
       "port": "9078",
       "primary": true,

@@ -1,22 +1,28 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Injectable, Logger } from '@nestjs/common';
 
 // The OpenHIM Mediator Utils is an essential package for quick mediator setup.
 // It handles the OpenHIM authentication, mediator registration, and mediator heartbeat.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { activateHeartbeat, registerMediator } from 'openhim-mediator-utils';
+import mediatorUtils from '@theshedman/openhim-mediator-utils';
 
-import { AppUtil } from './app.util';
+import { AppUtil } from './app.util.js';
 import { ConfigService } from '@nestjs/config';
-import { OpenHimCore } from './config/configuration';
+import { OpenHimCore } from './config/configuration.js';
 
 @Injectable()
 export class OpenHimSetup {
   constructor(private appUtil: AppUtil, private configService: ConfigService) {}
 
   public mediatorSetup(): void {
+    const { activateHeartbeat, registerMediator } = mediatorUtils;
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     // The mediatorConfig file contains some basic configuration settings about the mediator
     // as well as details about the default channel setup.
     const mediatorConfigFile = fs.readFileSync(
@@ -52,8 +58,9 @@ export class OpenHimSetup {
     // the client through any number of mediators involved and all the responses along the way(if the mediators are
     // properly configured). Moreover, if the request fails for any reason all the details are recorded and it can
     // be replayed at a later date to prevent data loss.
-    registerMediator(openHimConfig, mediatorConfig, (err: Error) => {
+    registerMediator(openHimConfig, mediatorConfig, async (err: Error) => {
       if (err) {
+        console.log({ err });
         throw new Error(
           `Failed to register mediator. Check your Config: ${err.message}`,
         );
@@ -63,7 +70,8 @@ export class OpenHimSetup {
 
       // The activateHeartbeat method returns an Event Emitter which allows the mediator to attach listeners waiting
       // for specific events triggered by OpenHIM responses to the mediator posting its heartbeat.
-      const emitter = activateHeartbeat(openHimConfig);
+      const emitter = await activateHeartbeat(openHimConfig);
+
       emitter.on('error', (err: Error) => {
         Logger.error(
           `Heartbeat failed: ${JSON.stringify(err)}`,

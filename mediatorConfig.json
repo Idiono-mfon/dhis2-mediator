@@ -10,7 +10,7 @@
       "routes": [
         {
           "name": "DHIS2 to FHIR Endpoint",
-          "host": "localhost",
+          "host": "67.205.142.245",
           "port": "9078",
           "primary": true,
           "type": "http"
@@ -24,7 +24,7 @@
   "endpoints": [
     {
       "name": "DHIS2 to FHIR Endpoint",
-      "host": "localhost",
+      "host": "67.205.142.245",
       "path": "/dhis2-to-fhir",
       "port": "9078",
       "primary": true,

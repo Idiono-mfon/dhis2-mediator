@@ -1,0 +1,34 @@
+{
+  "urn": "urn:mediator:openhim-dhis2-fhir-mediator",
+  "version": "0.0.1",
+  "name": "OpenHIM DHIS2 to FHIR Mediator",
+  "description": "OpenHIM DHIS2 to FHIR Mediator",
+  "defaultChannelConfig": [
+    {
+      "name": "DHIS2 to FHIR Route",
+      "urlPattern": "^/dhis2-to-fhir$",
+      "routes": [
+        {
+          "name": "DHIS2 to FHIR Endpoint",
+          "host": "https://7810-102-89-23-240.ngrok-free.app",
+          "port": "9078",
+          "primary": true,
+          "type": "http"
+        }
+      ],
+      "allow": ["admin"],
+      "methods": ["POST"],
+      "type": "http"
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "DHIS2 to FHIR Endpoint",
+      "host": "https://7810-102-89-23-240.ngrok-free.app",
+      "path": "/dhis2-to-fhir",
+      "port": "9078",
+      "primary": true,
+      "type": "http"
+    }
+  ]
+}

@@ -63,12 +63,12 @@ export class AppService {
           ],
           name: [
             {
-              family: this.getTeiAttributeValue('w75KJ2mc4zz', tei.attributes),
-              given: [this.getTeiAttributeValue('zDhUuAYrxNC', tei.attributes)],
+              family: this.getTeiAttributeValue('tkgQSC11g4f', tei.attributes),
+              given: [this.getTeiAttributeValue('fyCOYaKMuLq', tei.attributes)],
             },
           ],
           gender: this.getTeiAttributeValue(
-            'cejWyOfXge6',
+            'raVYuwca9Ry',
             tei.attributes,
           ).toLowerCase(),
           managingOrganization: {

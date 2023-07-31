@@ -10,7 +10,7 @@ async function bootstrap() {
   const PORT = configService.get<number>('port') as number;
 
   await app.listen(PORT).then(() => {
-    openHim.mediatorSetup();
+    // openHim.mediatorSetup();
   });
 }
 
